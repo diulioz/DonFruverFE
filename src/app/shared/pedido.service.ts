@@ -21,8 +21,11 @@ export class PedidoService {
   agregarPedido(pedido: PedidoModel) {
     return this.http.post<string>(`${this.BASE_URL}/pedidos`,pedido);
   }
-  actualizarPedido(pedido: PedidoModel) { 
-    return this.http.put<string>(`${this.BASE_URL}/pedidos/${pedido.idPedido}`,pedido);
+  confirmarPedido(pedido: PedidoModel) { 
+    return this.http.put<string>(`${this.BASE_URL}/pedidos/${pedido.idPedido}`,{Confirmado:1});
+  }
+  rechazarPedido(pedido: PedidoModel) { 
+    return this.http.put<string>(`${this.BASE_URL}/pedidos/${pedido.idPedido}`,{Confirmado:0});
   }
   borrarPedido(idPedido: string) { 
     return this.http.delete<string>(`${this.BASE_URL}/pedidos/${idPedido}`);

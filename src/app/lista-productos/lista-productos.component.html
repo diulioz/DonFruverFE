@@ -2,15 +2,16 @@
     <div class="row">
       <div class="col">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2>Lista de Productos</h2>
-          <a class="btn btn-success" [routerLink]="['/productos/agregar']">Nuevo Producto</a>
-        </div>
+        <h2>Lista de Productos</h2>
+        <a class="btn btn-success" [routerLink]="['/productos/agregar']">Nuevo Producto</a>
+      </div>
         <table class="table table-striped">
           <thead>
             <tr>
               <th>ID</th>
               <th>NOMBRE</th>
-              <th>DESCRIPCION</th>
+              <th>DESCRIPCIÓN</th>
+              <th>CATEGORÍA</th>
               <th>PRECIO</th>
               <th>CANTIDAD</th>
               <th>IMAGEN</th>
@@ -23,6 +24,7 @@
               <td>{{ producto.idProducto }}</td>
               <td>{{ producto.Nombre }}</td>
               <td>{{ producto.Descripcion }}</td>
+              <td>{{ producto.Categoria }}</td>
               <td>$ {{ producto.Precio }}</td>
               <td>{{ producto.Cantidad_Disponible }}</td>
               <td><img [src]="producto.Imagen" alt="Imagen del Producto" class="img-thumbnail" width="100"></td>

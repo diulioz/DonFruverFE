@@ -11,6 +11,14 @@
             <textarea class="form-control" required [(ngModel)]="producto.Descripcion" name="descripcion" rows="5"></textarea>
           </div>
           <div class="mb-3">
+            <label class="form-label" for="categoria">Categoría</label>
+            <select class="form-select" required [(ngModel)]="producto.Categoria" name="categoria">
+              <option value="Granos">Granos</option>
+              <option value="Frutas">Frutas</option>
+              <option value="Vegetales">Vegetales</option>
+            </select>
+          </div>
+          <div class="mb-3">
             <label class="form-label" for="precio">Precio</label>
             <input type="text" class="form-control" required [(ngModel)]="producto.Precio" name="precio" pattern="^\d+(\.\d{1,2})?$">
           </div>
@@ -22,7 +30,14 @@
             <label class="form-label" for="imagen">Imagen</label>
             <input type="text" class="form-control" required [(ngModel)]="producto.Imagen" name="imagen">
           </div>
-          <button type="submit" class="btn btn-primary" [disabled]="!productoForm.form.valid">Enviar</button>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <!-- Botón de regresar -->
+            <a class="btn btn-success me-md-2" [routerLink]="['/productos']">Regresar</a>
+  
+            <!-- Botón de enviar -->
+            <button type="submit" class="btn btn-primary" [disabled]="!productoForm.form.valid">Enviar</button>
+          </div>
+      
         </form>
       </div>
     </div>

@@ -11,7 +11,7 @@ import { ProductoModel } from '../shared/producto.model';
 export class EditarProductosComponent implements OnInit{  
 
   idProducto = '';
-  producto = new ProductoModel("", "", "",0, 0, "");
+  producto = new ProductoModel("", "", "",0, 0, "","");
 
   constructor(private productoService: ProductoService,private route: ActivatedRoute, private router: Router) { }
 

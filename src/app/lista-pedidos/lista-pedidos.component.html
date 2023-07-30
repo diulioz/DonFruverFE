@@ -1,1 +1,45 @@
-<p>lista-pedidos works!</p>
+<div class="container mt-4">
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Lista de pedidos</h2>
+      </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>IDENTIFICACIÓN</th>
+              <th>FRECHA</th>
+              <th>ESTADO</th>
+              <th>TOTAL</th>
+              <th>ACCIONES</th>
+              <th></th> <!-- Celda vacía para separar los botones -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of pedidos | async">
+              <td>{{ pedido.idPedido }}</td>
+              <td>{{ pedido.Usuario_ID }}</td>
+              <td>{{ pedido.Fecha }}</td>
+              <td>
+                <ng-container *ngIf="pedido.Confirmado === 0">
+                  Rechazado
+                </ng-container>
+                <ng-container *ngIf="pedido.Confirmado === 1">
+                  Aceptado
+                </ng-container>
+                <ng-container *ngIf="pedido.Confirmado === 2">
+                  Pendiente
+                </ng-container>
+              </td>
+              <td>$ {{ pedido.Total}}</td>
+              <td>
+                <button class="btn btn-success mr-2" (click)="confirmarPedido(pedido)" [disabled]="pedido.Confirmado !== 2">Confirmar</button>
+                <button class="btn btn-danger" (click)="rechazarPedido(pedido)" [disabled]="pedido.Confirmado !== 2">Rechazar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
