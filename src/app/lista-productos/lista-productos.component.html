@@ -27,7 +27,7 @@
               <td>{{ producto.Categoria }}</td>
               <td>$ {{ producto.Precio }}</td>
               <td>{{ producto.Cantidad_Disponible }}</td>
-              <td><img [src]="producto.Imagen" alt="Imagen del Producto" class="img-thumbnail" width="100"></td>
+              <td><img [src]="'assets/imagenes/' +producto.Imagen" alt="Imagen del Producto" class="img-thumbnail" width="100"></td>
               <td>
                 <a class="btn btn-info mr-2" [routerLink]="['/productos/editar/', producto.idProducto]">Editar</a>
               </td>

@@ -46,3 +46,13 @@
   .card {
     cursor: pointer;
   }
+
+  .custom-img { /* Establecemos el ancho al 100% para que se ajuste al tamaño de la tarjeta */
+    height: 320px; /* Establecemos una altura fija para todas las imágenes, puedes ajustar este valor según tus necesidades */
+    object-fit: cover; /* Ajustamos la imagen para que cubra toda el área asignada sin distorsión */
+  }
+
+  .custom-modal {
+    max-width: 800px; /* Ajusta el tamaño deseado según tus necesidades */
+    width: 90%; /* También puedes usar porcentajes para controlar el ancho */
+  }
