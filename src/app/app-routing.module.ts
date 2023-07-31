@@ -5,6 +5,7 @@ import { EditarProductosComponent } from './editar-productos/editar-productos.co
 import { ListaPedidosComponent } from './lista-pedidos/lista-pedidos.component';
 import { CarroComponent } from './carro/carro.component';
 import { DonFruverComponent } from './don-fruver/don-fruver.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: 'productos', component: ListaProductosComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'pedidos', component: ListaPedidosComponent },
   { path: 'carro', component: CarroComponent },
   { path: 'donfruver', component: DonFruverComponent },
+  { path: 'login', component: LoginComponent },
   {path:'**',redirectTo:'donfruver',pathMatch:'full'}
 ];
 
