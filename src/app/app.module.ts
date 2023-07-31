@@ -14,6 +14,7 @@ import { ListaPedidosComponent } from './lista-pedidos/lista-pedidos.component';
 import { LoginComponent } from './login/login.component';
 import { DonFruverComponent } from './don-fruver/don-fruver.component';
 import { CarroComponent } from './carro/carro.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CarroComponent } from './carro/carro.component';
     DetallePedidoService,
     PedidoService,
     UsuarioService,
-    ProductoService
+    ProductoService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
