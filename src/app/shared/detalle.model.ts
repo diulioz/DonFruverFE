@@ -1,5 +1,5 @@
 export class DetalleModel { 
-    constructor(public idDetalles: number, public Pedido_ID: number, public Producto_ID:number, public Cantidad:number,
+    constructor(public idDetalles: string, public Pedido_ID: string, public Producto_ID:string, public Cantidad:number,
         public Subtotal:number) { 
   
     }

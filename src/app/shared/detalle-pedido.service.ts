@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DetalleModel } from './detalle.model';
+import { ProductoModel } from './producto.model';
 
 
 @Injectable({
@@ -27,5 +28,13 @@ export class DetallePedidoService {
   }
   borrarDetalle(idDetalles: string) { 
     return this.http.delete<string>(`${this.BASE_URL}/detallesP/${idDetalles}`);
+  }
+
+  obtenerProductos() { 
+    return this.http.get<ProductoModel[]>(`${this.BASE_URL}/productos`);
+  }
+
+  obtenerProducto(idProducto: string) { 
+    return this.http.get<ProductoModel[]>(`${this.BASE_URL}/productos/${idProducto}`);
   }
 }

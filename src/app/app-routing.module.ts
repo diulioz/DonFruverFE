@@ -3,13 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListaProductosComponent } from './lista-productos/lista-productos.component';
 import { EditarProductosComponent } from './editar-productos/editar-productos.component';
 import { ListaPedidosComponent } from './lista-pedidos/lista-pedidos.component';
+import { CarroComponent } from './carro/carro.component';
+import { DonFruverComponent } from './don-fruver/don-fruver.component';
 
 const routes: Routes = [
   {path: 'productos', component: ListaProductosComponent},
   { path: 'productos/editar/:idProducto', component: EditarProductosComponent },
   { path: 'productos/agregar', component: EditarProductosComponent },
   { path: 'pedidos', component: ListaPedidosComponent },
-  {path:'**',redirectTo:'/productos',pathMatch:'full'}
+  { path: 'carro', component: CarroComponent },
+  { path: 'donfruver', component: DonFruverComponent },
+  {path:'**',redirectTo:'donfruver',pathMatch:'full'}
 ];
 
 @NgModule({

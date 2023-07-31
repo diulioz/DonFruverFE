@@ -1,0 +1,9 @@
+.input-cantidad {
+    width: 100px;
+  }
+
+.contenedor-reducido {
+max-width: 1000px; /* Establecer un ancho máximo para el contenedor */
+margin: 0 auto; /* Centrar el contenedor horizontalmente */
+padding: 10px; /* Ajustar el espaciado dentro del contenedor */
+}

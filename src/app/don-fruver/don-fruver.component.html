@@ -1,1 +1,38 @@
-<p>don-fruver works!</p>
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let producto of productos | async">
+        <div class="card mb-4">
+          <img [src]="producto.Imagen" class="card-img-top" alt="Imagen del producto">
+          <div class="card-body">
+            <h5 class="card-title">{{ producto.Categoria }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ producto.Nombre }}</h6>
+            <p class="card-text">Precio: $ {{ producto.Precio }}</p>
+            <button class="btn btn-primary" (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
+            <button class="btn btn-primary" (click)="abrirModal(producto)">Ver detalles</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Ventana emergente o modal -->
+  <div class="modal-background" [ngClass]="{ 'show-modal': showModal }">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ productoSeleccionado?.Nombre }}</h5>
+        <button type="button" class="close" (click)="cerrarModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Categoría:</strong> {{ productoSeleccionado?.Categoria }}</p>
+        <p><strong>Precio:</strong> $ {{ productoSeleccionado?.Precio }}</p>
+        <!-- Agrega aquí los demás detalles del producto -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  
+  
