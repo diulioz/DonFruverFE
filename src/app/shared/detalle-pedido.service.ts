@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DetalleModel } from './detalle.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
