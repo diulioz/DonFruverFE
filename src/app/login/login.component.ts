@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  //Permite Loguearse en la tienda, ademas se genera un token y se guarda el idUsuario en localStorage
   logearse() {
     console.log(this.user);
         this.authService.logearse(this.user.idUsuario, this.user.Contrasena).subscribe(
