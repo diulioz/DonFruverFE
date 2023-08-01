@@ -13,8 +13,8 @@ export class AuthGuard implements CanActivate {
     if(this.authService.siLogueado()){
       return true;
     }
-
     this.router.navigate(['/login']);
     return false;
   } 
+  
 }

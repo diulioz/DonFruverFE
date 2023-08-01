@@ -11,6 +11,7 @@
               <th>PRECIO UNITARIO</th>
               <th>CANTIDAD</th>
               <th>TOTAL</th>
+              <th>ACCIONES</th>
             </tr>
           </thead>
           <tbody>
@@ -26,16 +27,13 @@
                 </div>
               </td>
               <td>$ {{ carro.Subtotal }}</td>
+              <div>
+                <button class="btn btn-success me-2" (click)="actualizarDetalle(carro)">Actualizar</button>
+                <button class="btn btn-secondary me-2" (click)="eliminarDetalle(carro.idDetalles)">Eliminar</button>
+              </div>
             </tr>
           </tbody>
         </table>
-        <div class="d-flex justify-content-between align-items-center">
-          <h4>Total a Pagar: $</h4>
-          <div>
-            <!-- <button class="btn btn-primary me-2" [disabled]="detalles.length === 0" (click)="comprar()">Comprar</button>
-            <button class="btn btn-secondary" [disabled]="detalles.length === 0" (click)="cancelar()">Cancelar</button> -->
-          </div>
-        </div>
       </div>
     </div>
   </div>

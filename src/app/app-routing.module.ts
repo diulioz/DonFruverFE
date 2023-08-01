@@ -9,11 +9,11 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  {path: 'productos', component: ListaProductosComponent},
-  { path: 'productos/editar/:idProducto', component: EditarProductosComponent },
-  { path: 'productos/agregar', component: EditarProductosComponent },
+  {path: 'productos', component: ListaProductosComponent, canActivate:[AuthGuard]},
+  { path: 'productos/editar/:idProducto', component: EditarProductosComponent, canActivate:[AuthGuard] },
+  { path: 'productos/agregar', component: EditarProductosComponent, canActivate:[AuthGuard] },
   { path: 'pedidos', component: ListaPedidosComponent, canActivate:[AuthGuard] },
-  { path: 'carro', component: CarroComponent },
+  { path: 'carro', component: CarroComponent, canActivate:[AuthGuard] },
   { path: 'donfruver', component: DonFruverComponent },
   { path: 'login', component: LoginComponent },
   {path:'**',redirectTo:'donfruver',pathMatch:'full'}

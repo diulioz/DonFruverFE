@@ -3,4 +3,6 @@ export class PedidoModel {
         public Total:number) { 
   
     }
+
+    
 }

@@ -5,17 +5,15 @@ import { ProductoModel } from './producto.model';
   providedIn: 'root'
 })
 export class CarritoService {
-  carrito: ProductoModel[] = [];
+  private productosCarro: ProductoModel[] = [];
 
-  agregarAlCarrito(producto: ProductoModel) {
-    this.carrito.push(producto);
+  constructor() { }
+
+  agregarProductoCarro(producto: ProductoModel) {
+    this.productosCarro.push(producto);
   }
 
-  obtenerCarrito() {
-    return this.carrito;
-  }
-
-  vaciarCarrito() {
-    this.carrito = [];
+  obtenerProductosCarro(): ProductoModel[] {
+    return this.productosCarro;
   }
 }

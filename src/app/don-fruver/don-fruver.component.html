@@ -1,23 +1,30 @@
 <div class="container mt-4">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let producto of productos | async">
-        <div class="card mb-4">
-          <!-- Agregamos la imagen del producto en la tarjeta normal -->
-          <img [src]="'assets/imagenes/' + producto.Imagen" class="card-img-top custom-img" alt="Imagen del producto">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">{{ producto.Nombre }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ producto.Categoria }}</h6>
-            <p class="card-text">Precio: $ {{ producto.Precio }}</p>
-            <!-- Colocamos los botones uno debajo del otro con la clase "flex-grow-1" -->
-            <div class="d-flex flex-column flex-grow-1">
-              <button class="btn btn-primary mb-2" (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
-              <button class="btn btn-primary" (click)="abrirModal(producto)">Ver detalles</button>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let producto of productos | async">
+      <div class="card mb-4">
+        <!-- Agregamos la imagen del producto en la tarjeta normal -->
+        <img [src]="'assets/imagenes/' + producto.Imagen" class="card-img-top custom-img" alt="Imagen del producto">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ producto.Nombre }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ producto.Categoria }}</h6>
+          <p class="card-text">Precio: $ {{ producto.Precio }}</p>
+          <!-- Colocamos los botones uno debajo del otro con la clase "flex-grow-1" -->
+          <div class="d-flex flex-column flex-grow-1">
+            <!-- Campo de entrada para seleccionar la cantidad a comprar -->
+            <div class="input-group">
+              <!-- <button class="btn btn-primary mb-2 custom-button" (click)="comprarProducto(producto)">Comprar</button> -->
+              <input type="number" class="form-control mb-2" [(ngModel)]="producto.Cantidad_Disponible" min="1">
             </div>
+            <button class="btn btn-primary mb-2 custom-button" (click)="comprarProducto(producto)">Comprar</button>
+            <button class="btn btn-primary custom-button" (click)="abrirModal(producto)">Ver detalles</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+
   
 <!-- Ventana emergente o modal -->
 <div class="modal-background" [ngClass]="{ 'show-modal': showModal }">

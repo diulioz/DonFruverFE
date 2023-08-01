@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DetalleModel } from './detalle.model';
 import { ProductoModel } from './producto.model';
+import { PedidoModel } from './pedido.model';
 
 
 @Injectable({
@@ -36,5 +37,13 @@ export class DetallePedidoService {
 
   obtenerProducto(idProducto: string) { 
     return this.http.get<ProductoModel[]>(`${this.BASE_URL}/productos/${idProducto}`);
+  }
+
+  obtenerPedidos() { 
+    return this.http.get<PedidoModel[]>(`${this.BASE_URL}/pedidos`);
+  }
+
+  obtenerPedidoId(idPedido: string) { 
+    return this.http.get<PedidoModel[]>(`${this.BASE_URL}/pedidos/${idPedido}`);
   }
 }

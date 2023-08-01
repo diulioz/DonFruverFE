@@ -6,6 +6,7 @@ import { ProductoModel } from './producto.model';
   providedIn: 'root'
 })
 export class ProductoService {
+  private carrito: ProductoModel[] = [];
   BASE_URL = 'http://localhost:3000';
   constructor(private http: HttpClient) { }
 
@@ -25,6 +26,14 @@ export class ProductoService {
   }
   borrarProducto(idProducto: string) { 
     return this.http.delete<string>(`${this.BASE_URL}/productos/${idProducto}`);
+  }
+
+  agregarAlCarrito(producto: ProductoModel) {
+    this.carrito.push(producto);
+  }
+  
+  obtenerCarrito() {
+    return this.carrito;
   }
 
 }

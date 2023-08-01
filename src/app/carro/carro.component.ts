@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { DetalleModel } from '../shared/detalle.model';
 import { DetallePedidoService } from '../shared/detalle-pedido.service';
 import { ProductoModel } from '../shared/producto.model';
+import { PedidoService } from '../shared/pedido.service';
+import { PedidoModel } from '../shared/pedido.model';
 
 @Component({
   selector: 'app-carro',
@@ -12,19 +14,37 @@ import { ProductoModel } from '../shared/producto.model';
 export class CarroComponent implements OnInit {
   detalles: Observable<DetalleModel[]> | undefined;
   productos: ProductoModel[] = [];
+  pedido: PedidoModel[] = [];
 
-  constructor(private detalleService: DetallePedidoService) { }
+  constructor(private detalleService: DetallePedidoService, private pedidoService: PedidoService) { }
 
   ngOnInit() {
+    const idUsuario = Number(localStorage.getItem('id'));
+    // console.log('ID del Usuario:', idUsuario);
     this.detalles = this.detalleService.obtenerDetalles();
     this.obtenerProductos();
+    this.obtenerPedidos();
+    const idPedido = this.obtenerPedidosU(idUsuario); // Llamar a la función para obtener el idPedido del usuario
+    // console.log('ID del Pedido del Usuario:', idPedido);
   }
 
   obtenerProductos() {
-    // Suponiendo que tienes una función en tu DetalleService para obtener los productos
     this.detalleService.obtenerProductos().subscribe((productos) => {
       this.productos = productos;
     });
+  }
+
+  obtenerPedidos() {
+    this.pedidoService.obtenerPedidos().subscribe((pedido) => {
+      this.pedido = pedido;
+      this.pedido.forEach(p => console.log('Usuario_ID:', p.Usuario_ID));
+    });
+  }
+  
+
+  obtenerPedidosU(idUsuario: number): string {
+    const pedidoEncontrado = this.pedido.find(pedidoU => pedidoU.Usuario_ID === idUsuario);
+    return pedidoEncontrado ? pedidoEncontrado.idPedido : 'Pedido no encontrado';
   }
 
   obtenerNombreProducto(idProducto: string): string {
@@ -52,24 +72,18 @@ export class CarroComponent implements OnInit {
       detalle.Cantidad--;
       this.calcularSubtotal(detalle);
     }
-  }
-
-  
-
-  comprar(): void {
-    // Lógica para procesar la compra del carro de compras
-    console.log('Pedido comprado');
-  }
-
-  cancelar(): void {
-    // Lógica para cancelar la compra y limpiar el carro de compras
-    console.log('Compra cancelada');
-  }
-  
+  } 
 
   eliminarDetalle(idDetalles: string) {
     this.detalleService.borrarDetalle(idDetalles).subscribe(data => {
       console.log("Detalle eliminado");
+      this.ngOnInit();
+    });
+  }
+
+  actualizarDetalle(idDetalles: DetalleModel) {
+    this.detalleService.actualizarDetalle(idDetalles).subscribe(data => {
+      console.log("Detalle Actualizado");
       this.ngOnInit();
     });
   }

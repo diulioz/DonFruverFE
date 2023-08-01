@@ -14,29 +14,30 @@
         <div class="col-md-5">
           <div class="d-flex align-items-center search-form">
             <form class="d-flex" role="search">
-              <input class="form-control me-2 custom-search-input" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <input class="form-control me-2 custom-search-input" type="search" placeholder="Search" aria-label="Search" #searchInput>
+              <button class="btn btn-outline-success" type="button" (click)="buscarProducto(searchInput.value)">Search</button>
             </form>
           </div>
         </div>
       </ul>
-      
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="/carro" routerLinkActive="active">Carro</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pedidos" routerLinkActive="active">Pedidos</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Productos
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="productos">Listar Productos</a></li>
-            <li><a class="dropdown-item" href="productos/agregar">Agregar Producto</a></li>
-          </ul>
-        </li>
+        <!-- Agregamos una comprobación para mostrar "Pedidos" y "Productos" solo si el usuario es administrador -->
+        <!-- <ng-container *ngIf="authService.esAdministrador(); else noAdmin"> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/pedidos" routerLinkActive="active">Pedidos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Productos
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="productos">Listar Productos</a></li>
+              <li><a class="dropdown-item" href="productos/agregar">Agregar Producto</a></li>
+            </ul>
+          </li>
         <ng-container *ngIf="!authService.siLogueado(); else loggedIn" >
           <li class="nav-item">
             <a class="nav-link" href="/login" routerLinkActive="active">Ingresar</a>
@@ -47,12 +48,13 @@
             <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Cerrar Sesión</a>
           </li>
         </ng-template>
-        
       </ul>
+
     </div>
   </div>
 </nav>
 
-<div class="container">
+<div class="container custom-container">
   <router-outlet></router-outlet>
 </div>
+

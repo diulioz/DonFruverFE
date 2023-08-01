@@ -21,9 +21,10 @@ export class PedidoService {
     return this.http.get<PedidoModel[]>(`${this.BASE_URL}/pedidos/${idPedido}`);
   }
 
-  agregarPedido(pedido: PedidoModel) {
-    return this.http.post<string>(`${this.BASE_URL}/pedidos`,pedido);
+  agregarPedido(pedido: PedidoModel): Observable<PedidoModel> {
+    return this.http.post<PedidoModel>(`${this.BASE_URL}/pedidos`, pedido);
   }
+  
   confirmarPedido(pedido: PedidoModel) { 
     return this.http.put<string>(`${this.BASE_URL}/pedidos/${pedido.idPedido}`,pedido);
   }
