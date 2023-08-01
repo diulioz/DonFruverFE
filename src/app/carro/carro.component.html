@@ -12,7 +12,6 @@
             <th>PRECIO UNITARIO</th>
             <th>CANTIDAD</th>
             <th>TOTAL</th>
-            <th>ID PEDIDO</th>
             <th>ACCIONES</th>
           </tr>
         </thead>
@@ -33,7 +32,6 @@
               </div>
             </td>
             <td>$ {{ carro.Subtotal }}</td>
-            <td>{{ carro.Pedido_ID }}</td>
             <!-- <td>{{ carro.NombreUsuario }}</td> -->
             <td>
               <button class="btn btn-success me-2" [disabled]="pedidoConfirmado.get(carro.Pedido_ID)" (click)="actualizarDetalle(carro)">Actualizar</button>
