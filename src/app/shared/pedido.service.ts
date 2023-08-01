@@ -35,5 +35,9 @@ export class PedidoService {
   obtenerCorreoElectronicoUsuario(idUsuario: number): Observable<UsuarioModel[]> {
     return this.http.get<UsuarioModel[]>(`${this.BASE_URL}/usuarios/${idUsuario}`);
   }
+
+  obtenerPedidosUsuario(idUsuario: string) { 
+    return this.http.get<UsuarioModel[]>(`${this.BASE_URL}/usuarios/${idUsuario}`);
+  }
   
 }
