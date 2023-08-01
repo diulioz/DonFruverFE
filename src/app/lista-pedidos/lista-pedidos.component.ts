@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PedidoModel } from '../shared/pedido.model';
 import { Observable } from 'rxjs';
 import { PedidoService } from '../shared/pedido.service';
-import { UsuarioModel } from '../shared/usuario.model';
+// import { UsuarioModel } from '../shared/usuario.model';
 import { CorreoService } from '../shared/correo.service';
 
 
@@ -25,13 +25,14 @@ export class ListaPedidosComponent {
     this.pedidos = this.pedidosService.obtenerPedidos();
   }
 
-  borrarPedido(idPedido: string) { 
-    this.pedidosService.borrarPedido(idPedido).subscribe(data => { 
-      console.log("Registro Eliminado");
-      this.ngOnInit();
-    });
-  }
+  // borrarPedido(idPedido: string) { 
+  //   this.pedidosService.borrarPedido(idPedido).subscribe(data => { 
+  //     console.log("Registro Eliminado");
+  //     this.ngOnInit();
+  //   });
+  // }
 
+  //Permite confirmar el pedido, cambia el estado a 1 y envia un correo de confirmacion al cliente
   confirmarPedido(pedido: PedidoModel): void {
     pedido.Confirmado = 1; // Establecer el estado a "Aceptado" (valor 1)
     this.obtenerCorreoElectronico(pedido.Usuario_ID);
@@ -49,6 +50,7 @@ export class ListaPedidosComponent {
     });
   }
   
+  //Permite rechazar el pedido, cambia el estado a 0 y envia un correo indicando el rechazo del pedido al cliente
   rechazarPedido(pedido: PedidoModel): void {
     pedido.Confirmado = 0; // Establecer el estado a "Rechazado" (valor 0)
     this.obtenerCorreoElectronico(pedido.Usuario_ID);
@@ -65,8 +67,7 @@ export class ListaPedidosComponent {
       );
     });
   }
-
-  
+  // permite el envio del correo eletronico al usuario
   obtenerCorreoElectronico(idUsuario: number): void {
     this.pedidosService.obtenerCorreoElectronicoUsuario(idUsuario).subscribe(usuarios => {
       if (usuarios.length > 0) {

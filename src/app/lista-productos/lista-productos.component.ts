@@ -16,7 +16,7 @@ export class ListaProductosComponent implements OnInit {
   ngOnInit(){
     this.productos = this.productoService.obtenerProductos();
   }
-
+  //Permite borrar un producto
   borrarProducto(idProducto: string) { 
     this.productoService.borrarProducto(idProducto).subscribe(data => { 
       console.log("Registro Eliminado");

@@ -18,11 +18,9 @@ export class DonFruverComponent {
   showModal = false; // Variable para mostrar/ocultar el modal
   productoSeleccionado: ProductoModel | undefined;
   pedidoNuevo: PedidoModel | undefined;
-  detallesPedido: DetalleModel[] = [];
-  cantidadProductos: number = 0;
-
-
-
+  // detallesPedido: DetalleModel[] = [];
+  // cantidadProductos: number = 0;
+  
   constructor(
     private productoService: ProductoService,
     private pedidoService: PedidoService,
@@ -32,25 +30,25 @@ export class DonFruverComponent {
   ngOnInit() {
     this.productos = this.productoService.obtenerProductos();
   }
-
+  //VENTANA EMERGENTE CON INFORMACION DEL PRODUCTO
+  //permite abrir la ventana emergente con la informacion extendida del producto
   abrirModal(producto: ProductoModel) {
     this.productoSeleccionado = producto;
     this.showModal = true;
   }
-
+  //permite cerrar la ventana Modal
   cerrarModal() {
     this.showModal = false;
   }
 
+  //Permite hacer la compra de un producto
   comprarProducto(producto: ProductoModel) {
     const idUsuario = Number(localStorage.getItem('id')); // Obtener el idUsuario del localStorage
     // Obtener la cantidad de productos antes de comprar
     this.obtenerCantidad(producto.idProducto).subscribe(cantidadAntes => {
       console.log('Cantidad antes de comprar:', cantidadAntes);
-  
       // Crear un nuevo pedido
       this.pedidoNuevo = new PedidoModel('', idUsuario, new Date(), 2, 3);
-  
       // Agregar el nuevo pedido al servicio de pedidos
       this.pedidoService.agregarPedido(this.pedidoNuevo).subscribe((pedidoCreado) => {
         // Pedido creado con éxito, ahora guardamos el detalle de pedido asociado
@@ -62,9 +60,9 @@ export class DonFruverComponent {
             Cantidad: producto.Cantidad_Disponible,
             Subtotal: producto.Cantidad_Disponible * producto.Precio,
           };
-  
           // Se actualiza el total del pedido
           this.confirmarPedido(pedidoCreado, detallePedido.Subtotal);
+          // Se actualiza la cantaidad del producto en la base de datos
           this.actualizarProducto(producto, cantidadAntes, detallePedido.Cantidad);
           this.detallePedidoService.agregarDetalle(detallePedido).subscribe((detalleCreado) => {
             console.log('Compra realizada con éxito');
@@ -75,7 +73,7 @@ export class DonFruverComponent {
       });
     });
   }
-  
+  //permite obtener la cantidad de un producto
   obtenerCantidad(producto: string): Observable<number> {
     return this.productoService.obtenerProducto(producto).pipe(
       map(data => {
@@ -88,6 +86,7 @@ export class DonFruverComponent {
       })
     );
   }
+  //permite actualizar el total en la base de datos
   confirmarPedido(pedido: PedidoModel, total:number): void {
     pedido.Total = total;
     this.pedidoService.confirmarPedido(pedido).subscribe(data => {
@@ -96,7 +95,7 @@ export class DonFruverComponent {
       
     });
   }
-
+  // permite actualizar la cantidad de un producto en la base de dato
   actualizarProducto(producto: ProductoModel, cantidad1: number, cantidad2: number): void {
     if (cantidad1 >= cantidad2) {
       producto.Cantidad_Disponible = cantidad1-cantidad2;
@@ -109,9 +108,4 @@ export class DonFruverComponent {
       console.log("Cantidad insuficiente de producto");
     }
   }
-
-  buscarProducto(termino: string) {
-    console.log('Buscar producto:', termino);
-  }
-  
 }

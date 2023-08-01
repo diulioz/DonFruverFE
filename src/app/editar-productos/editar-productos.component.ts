@@ -21,7 +21,7 @@ export class EditarProductosComponent implements OnInit{
     console.log("El id de Producto es :" + this.idProducto);
     
     if (this.idProducto) { 
-      //Editar
+      // Permite obtener los datos del producto
       this.productoService.obtenerProducto(this.idProducto).subscribe(data => {
         this.producto = data[0];
       }, error => {
@@ -31,15 +31,13 @@ export class EditarProductosComponent implements OnInit{
     else {
       //Nuevo Producto
       console.log('Nuevo Producto');
-      
     }
-
   }
 
   onSubmit() { 
     console.log("Submit realizado");
     if (this.producto.idProducto) {
-      //Viene de Editar
+      //Si es de edición, el se actualizaran los datos del producto en la base de datos
       this.productoService.actualizarProducto(this.producto).subscribe(
         data => {
           console.log(data);
@@ -48,8 +46,8 @@ export class EditarProductosComponent implements OnInit{
       );
     }
     else { 
-      //Viene de crear Nuevo Producto
-      console.log('Nuevo Producto');
+      //Si es de nuevo producto, se agrega un nuevo producto a la base de datos
+      // console.log('Nuevo Producto');
       this.productoService.agregarProducto(this.producto).subscribe(data => { 
         this.router.navigate(['/productos']);
       });

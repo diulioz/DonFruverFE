@@ -25,37 +25,18 @@ export class CarroComponent implements OnInit {
     private usuarioService: UsuarioService) { }
 
   ngOnInit() {
-    const idUsuario = localStorage.getItem('id');
     this.detalles = this.detalleService.obtenerDetalles();
     this.obtenerProductos();
-    const prueba = this.esUsuario(idUsuario)
-    console.log(prueba)
     // Obtener los pedidos del usuario
     this.pedidoService.obtenerPedidos().subscribe((pedidos) => {
       this.pedidos = pedidos; // Asignamos los pedidos a la lista pedidos
-      // const prueba = this.esUsuario()
-    console.log(prueba)
       console.log('Lista de pedidos:', this.pedidos);
       for (const pedido of pedidos) {
-        const id = pedido.Usuario_ID
-        // const prueba = this.esUsuario(pedido.Usuario_ID)
         this.pedidoConfirmado.set(pedido.idPedido, pedido.Confirmado === 1 || pedido.Confirmado === 0);
       }
     });
-  
-    // this.pedidoService.obtenerPedidos().subscribe((pedidos) => {
-    //   this.pedidos = pedidos; // Asignamos los pedidos a la lista pedidos
-    //   console.log('Lista de pedidos:', this.pedidos);
-    //   for (const pedido of pedidos) {
-    //     this.pedidoConfirmado.set(pedido.idPedido, pedido.Usuario_ID === idUsuario);
-    //   }
-    // });
     this.usuarioService.obtenerUsuarios().subscribe((usr) => {
-      this.usuarios = usr; // Asignamos los usr a la lista usr
-      // console.log('Lista de usr:', this.usuarios);
-      // for (const pedido of usr) {
-      //   this.pedidoConfirmado.set(pedido.idPedido, pedido.Usuario_ID === idUsuario);
-      // }
+      this.usuarios = usr;
     });
   }
   //FUNCIONES PARA OBTENER DATOS DE LOS PRODUCTOS
@@ -76,7 +57,8 @@ export class CarroComponent implements OnInit {
     return productoEncontrado ? productoEncontrado.Precio : 0; // Retorna 0 si no se encuentra el producto
   }
 
-  //Permite que en el carrito solo se muestren los pedidos del usuario en sesión
+  //Permite que en el carrito solo se muestren los pedidos del usuario en sesión, comparando el usuario del pdido
+  //con el usuario guardado en locaStorage
   esUsuario(idUsuario: string|null){
     const usuario1 = Number(localStorage.getItem('id'));
     const usuario2 = Number(idUsuario)
@@ -92,30 +74,22 @@ export class CarroComponent implements OnInit {
     const pedidoEncontrado = this.pedidos.find(pedido => pedido.idPedido === idPedido);
     return pedidoEncontrado ? pedidoEncontrado.Usuario_ID.toString() : 'No encontrado';
   }
-  //Permite obtener el Nombre del Usuario 
+  //Permite obtener el Nombre del Usuario, usando Usuario_ID
   obtenerNombre(Usuario_ID: string): string {
     const aux = Number(Usuario_ID)
     const pedidoEncontrado = this.usuarios.find(usuario => Number(usuario.idUsuario) == aux);
     return pedidoEncontrado ? pedidoEncontrado.Nombre : 'No encontrado';
   }
 
-  obtenerNombreUsuario(idPedido: string): string {
-    const idPed = this.obtenerUPedido(idPedido);
-    console.log(idPed)
-    const nombre = this.obtenerNombre(idPed);
-    console.log(nombre)
-    return this.obtenerNombre(idPed);
-  }
-
+  //Permite actualizar en la vista el Subtotal por cada producto
   calcularSubtotal(carro: DetalleModel): void {
     carro.Subtotal = carro.Cantidad * this.obtenerPrecioProducto(carro.Producto_ID);
   }
-
+  //Permite incrementar la cantidad de productos en el carro
   incrementarCantidad(detalle: DetalleModel) {
     detalle.Cantidad++;
     this.calcularSubtotal(detalle);
   }
-
   // Función para decrementar la cantidad del producto en el carro
   decrementarCantidad(detalle: DetalleModel) {
     if (detalle.Cantidad > 1) {
@@ -123,14 +97,14 @@ export class CarroComponent implements OnInit {
       this.calcularSubtotal(detalle);
     }
   } 
-
+  //Permite eliminar un producto del carrito
   eliminarDetalle(idDetalles: string) {
     this.detalleService.borrarDetalle(idDetalles).subscribe(data => {
       console.log("Detalle eliminado");
       this.ngOnInit();
     });
   }
-
+  // permte actualizar en detalles_pedidos lo que la cantidad de un producto
   actualizarDetalle(detalle: DetalleModel) {
     this.detalleService.actualizarDetalle(detalle).subscribe(data => {
       console.log("Detalle Actualizado");

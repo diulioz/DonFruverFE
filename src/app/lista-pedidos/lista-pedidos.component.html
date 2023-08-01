@@ -35,7 +35,8 @@
               <td>$ {{ pedido.Total}}</td>
               <td>
                 <button class="btn btn-success mr-2" (click)="confirmarPedido(pedido)" [disabled]="pedido.Confirmado !== 2">Confirmar</button>
-                <button class="btn btn-danger" (click)="rechazarPedido(pedido)" [disabled]="pedido.Confirmado !== 2">Rechazar</button>
+                &nbsp;
+                <button class="btn btn-danger mr-2" (click)="rechazarPedido(pedido)" [disabled]="pedido.Confirmado !== 2">Rechazar</button>
               </td>
             </tr>
           </tbody>
