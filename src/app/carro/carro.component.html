@@ -27,10 +27,10 @@
                 </div>
               </td>
               <td>$ {{ carro.Subtotal }}</td>
-              <div>
-                <button class="btn btn-success me-2" (click)="actualizarDetalle(carro)">Actualizar</button>
-                <button class="btn btn-secondary me-2" (click)="eliminarDetalle(carro.idDetalles)">Eliminar</button>
-              </div>
+              <td>
+                <button class="btn btn-success me-2" [disabled]="pedidoConfirmado.get(carro.Pedido_ID)" (click)="actualizarDetalle(carro)">Actualizar</button>
+                <button class="btn btn-secondary me-2" [disabled]="pedidoConfirmado.get(carro.Pedido_ID)" (click)="eliminarDetalle(carro.idDetalles)">Eliminar</button>
+              </td>
             </tr>
           </tbody>
         </table>

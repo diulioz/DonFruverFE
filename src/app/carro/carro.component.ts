@@ -15,17 +15,21 @@ export class CarroComponent implements OnInit {
   detalles: Observable<DetalleModel[]> | undefined;
   productos: ProductoModel[] = [];
   pedido: PedidoModel[] = [];
+  pedidoConfirmado: Map<string, boolean> = new Map<string, boolean>();
 
   constructor(private detalleService: DetallePedidoService, private pedidoService: PedidoService) { }
 
   ngOnInit() {
     const idUsuario = Number(localStorage.getItem('id'));
-    // console.log('ID del Usuario:', idUsuario);
     this.detalles = this.detalleService.obtenerDetalles();
     this.obtenerProductos();
-    this.obtenerPedidos();
-    const idPedido = this.obtenerPedidosU(idUsuario); // Llamar a la función para obtener el idPedido del usuario
-    // console.log('ID del Pedido del Usuario:', idPedido);
+
+    // Obtener los pedidos del usuario
+    this.pedidoService.obtenerPedidos().subscribe((pedidos) => {
+      for (const pedido of pedidos) {
+        this.pedidoConfirmado.set(pedido.idPedido, pedido.Confirmado === 1);
+      }
+    });
   }
 
   obtenerProductos() {
@@ -40,7 +44,6 @@ export class CarroComponent implements OnInit {
       this.pedido.forEach(p => console.log('Usuario_ID:', p.Usuario_ID));
     });
   }
-  
 
   obtenerPedidosU(idUsuario: number): string {
     const pedidoEncontrado = this.pedido.find(pedidoU => pedidoU.Usuario_ID === idUsuario);

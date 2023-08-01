@@ -88,9 +88,6 @@ export class DonFruverComponent {
       })
     );
   }
-  
-  
-
   confirmarPedido(pedido: PedidoModel, total:number): void {
     pedido.Total = total;
     this.pedidoService.confirmarPedido(pedido).subscribe(data => {
@@ -114,8 +111,6 @@ export class DonFruverComponent {
   }
 
   buscarProducto(termino: string) {
-    // Aquí puedes implementar la lógica de búsqueda
-    // Por ejemplo, puedes realizar una llamada al servicio para obtener los productos que coincidan con el término de búsqueda
     console.log('Buscar producto:', termino);
   }
   
