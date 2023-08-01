@@ -18,6 +18,9 @@ export class DonFruverComponent {
   showModal = false; // Variable para mostrar/ocultar el modal
   productoSeleccionado: ProductoModel | undefined;
   pedidoNuevo: PedidoModel | undefined;
+  productosFiltrados: ProductoModel[] = []; // Agregar lista para almacenar productos filtrados
+  filtro: any = {}; // Objeto para almacenar los criterios de filtrado
+
   // detallesPedido: DetalleModel[] = [];
   // cantidadProductos: number = 0;
   
@@ -28,7 +31,45 @@ export class DonFruverComponent {
   ) {}
 
   ngOnInit() {
+    this.obtenerProductos();
+  }
+
+  obtenerProductos() {
     this.productos = this.productoService.obtenerProductos();
+    // Verificar que this.productos no sea undefined antes de suscribirse
+    this.productos?.subscribe((productos) => {
+      this.productosFiltrados = productos; // Actualizar lista de productos filtrados al obtener los productos
+      this.filtrarProductos(); // Aplicar el filtrado inicial
+    });
+  }
+
+  filtrarProductos() {
+    // Filtrar productos en base a los criterios ingresados por el usuario
+    if (this.filtro.nombre || this.filtro.categoria || this.filtro.precio) {
+      this.productosFiltrados = this.productosFiltrados.filter((producto) => {
+        const nombre = this.filtro.nombre
+          ? producto.Nombre.toLowerCase().includes(this.filtro.nombre.toLowerCase())
+          : true;
+        const categoria = this.filtro.categoria
+          ? producto.Categoria.toLowerCase().includes(this.filtro.categoria.toLowerCase())
+          : true;
+        const precio = this.filtro.precio ? producto.Precio <= this.filtro.precio : true;
+        return nombre && categoria && precio;
+      });
+    } else {
+      // Si no hay criterios de filtrado, mostrar todos los productos
+      this.productos?.subscribe((productos) => {
+        this.productosFiltrados = productos;
+      });
+    }
+  }
+
+  limpiarFiltro() {
+    // Limpiar el objeto de filtro y mostrar todos los productos
+    this.filtro = {};
+    this.productos?.subscribe((productos) => {
+      this.productosFiltrados = productos;
+    });
   }
   //VENTANA EMERGENTE CON INFORMACION DEL PRODUCTO
   //permite abrir la ventana emergente con la informacion extendida del producto
@@ -95,7 +136,7 @@ export class DonFruverComponent {
       
     });
   }
-  // permite actualizar la cantidad de un producto en la base de dato
+  // permite actualizar la cantidad de un producto en la base de datos
   actualizarProducto(producto: ProductoModel, cantidad1: number, cantidad2: number): void {
     if (cantidad1 >= cantidad2) {
       producto.Cantidad_Disponible = cantidad1-cantidad2;

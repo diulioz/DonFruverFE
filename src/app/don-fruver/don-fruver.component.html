@@ -1,18 +1,40 @@
 <div class="container mt-4">
+  <form class="form-inline d-flex justify-content-end ml-auto" (ngSubmit)="filtrarProductos()" #filtroForm="ngForm">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar producto" name="buscar" [(ngModel)]="filtro.nombre">
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+  </form>
+  <br>
+  <form class="form-inline d-flex" (ngSubmit)="filtrarProductos()" #filtroForm="ngForm">
+    <div class="input-group">
+      <label for="categoria" class="m-2">Categoría:</label>
+      <input type="text" class="form-control" name="categoria" [(ngModel)]="filtro.categoria">
+    </div>
+    <div class="input-group">
+      <label for="precio" class="m-2">Precio Máximo:</label>
+      <input type="number" class="form-control mr-2" name="precio" [(ngModel)]="filtro.precio" min="0">
+    </div>
+    &nbsp;&nbsp;
+    <div class="input-group">
+      <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
+      <button type="button" class="btn btn-secondary mr-2" (click)="limpiarFiltro()">Limpiar</button>
+    </div>
+  </form>
+  
   <div class="row">
-    <div class="col-md-4" *ngFor="let producto of productos | async">
+    <div class="col-md-12 mb-4">
+    </div>
+    <!-- Lista de productos -->
+    <div class="col-md-4" *ngFor="let producto of productosFiltrados">
       <div class="card mb-4">
-        <!-- Agregamos la imagen del producto en la tarjeta normal -->
         <img [src]="'assets/imagenes/' + producto.Imagen" class="card-img-top custom-img" alt="Imagen del producto">
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ producto.Nombre }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ producto.Categoria }}</h6>
           <p class="card-text">Precio: $ {{ producto.Precio }}</p>
-          <!-- Colocamos los botones uno debajo del otro con la clase "flex-grow-1" -->
           <div class="d-flex flex-column flex-grow-1">
-            <!-- Campo de entrada para seleccionar la cantidad a comprar -->
             <div class="input-group">
-              <!-- <button class="btn btn-primary mb-2 custom-button" (click)="comprarProducto(producto)">Comprar</button> -->
               <input type="number" class="form-control mb-2" [(ngModel)]="producto.Cantidad_Disponible" min="1">
             </div>
             <button class="btn btn-primary mb-2 custom-button" (click)="comprarProducto(producto)">Comprar</button>
@@ -25,7 +47,6 @@
 </div>
 
 
-  
 <!-- Ventana emergente o modal -->
 <div class="modal-background" [ngClass]="{ 'show-modal': showModal }">
     <div class="modal-content custom-modal">
@@ -43,7 +64,6 @@
           <p><strong>Precio:</strong> $ {{ productoSeleccionado?.Precio }}</p>
           <p><strong>Descripción:</strong> {{ productoSeleccionado?.Descripcion }}</p>
           <p><strong>Cantidad disponible:</strong> {{ productoSeleccionado?.Cantidad_Disponible }}</p>
-          <!-- Agrega aquí los demás detalles del producto -->
         </div>
       </div>
       <div class="modal-footer">

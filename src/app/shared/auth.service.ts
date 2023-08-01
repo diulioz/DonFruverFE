@@ -16,22 +16,22 @@ export class AuthService {
     this.obtenerUsuarios()
   }
 
-  
+  //si
   logearse(idUsuario: string, Contrasena: string){
     return this.http.post<any>(`${this.BASE_URL}/singup`, {idUsuario: idUsuario, Contrasena:Contrasena});
   }
 
-  obtenerRolUsuario(idUsuario: String): Observable<any> {
-    return this.http.get<any>(`${this.BASE_URL}/usuarioRol/${idUsuario}`);
-  }
+  // obtenerRolUsuario(idUsuario: String): Observable<any> {
+  //   return this.http.get<any>(`${this.BASE_URL}/usuarioRol/${idUsuario}`);
+  // }
 
-  obtenerUsuarioId(idUsuario: string): Observable<UsuarioModel[]> {
-    return this.http.get<UsuarioModel[]>(`${this.BASE_URL}/usuarios/${idUsuario}`);
-  }
+  // obtenerUsuarioId(idUsuario: string): Observable<UsuarioModel[]> {
+  //   return this.http.get<UsuarioModel[]>(`${this.BASE_URL}/usuarios/${idUsuario}`);
+  // }
 
-  obtenerDetallesPedidoPorId(idPedido: number): Observable<PedidoModel[]> {
-    return this.http.get<PedidoModel[]>(`${this.BASE_URL}/pedidos/${idPedido}`);
-  }
+  // obtenerDetallesPedidoPorId(idPedido: number): Observable<PedidoModel[]> {
+  //   return this.http.get<PedidoModel[]>(`${this.BASE_URL}/pedidos/${idPedido}`);
+  // }
  
   //Retorno del Token cuando se logra el logeo
   siLogueado(){
@@ -41,7 +41,8 @@ export class AuthService {
   //Permite cerrar sesión
   logout(){
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    localStorage.removeItem('id')
+    this.router.navigate(['/donfruver']);
   }
  //pemite obtener la lista de usuarios
   obtenerUsuarios() {
@@ -91,15 +92,15 @@ export class AuthService {
     }
   }
 
-  esUsuario(idUsuario: string|null){
-    const usuario1 = Number(localStorage.getItem('id'));
-    const usuario2 = Number(idUsuario)
-    if(usuario1==usuario2){
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
+  // esUsuario(idUsuario: string|null){
+  //   const usuario1 = Number(localStorage.getItem('id'));
+  //   const usuario2 = Number(idUsuario)
+  //   if(usuario1==usuario2){
+  //     return true;
+  //   }
+  //   else{
+  //     return false;
+  //   }
+  // }
 
 }

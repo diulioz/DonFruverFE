@@ -1,58 +1,121 @@
+/* Estilos para la barra de navegación */
+.navbar {
+  background-color: #84BD00; /* Color verde claro */
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.nav-link {
+  color: #000000; /* Texto en color blanco */
+}
+
+.nav-link:hover {
+  color: #da5454; /* Texto en color negro al pasar el mouse */
+}
+
+/* Estilos para el contenedor principal */
+.container.custom-container {
+  background-color: #F8F8F8; /* Color gris claro */
+  padding: 20px;
+}
+
+/* Estilos para los botones */
+.btn {
+  border-radius: 10px;
+  padding: 0.375rem 0.75rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #84BD00; /* Color verde claro */
+  border-color: #84BD00;
+}
+
+.btn-primary:hover {
+  background-color: #FFD700; /* Color amarillo suave al pasar el mouse */
+  border-color: #FFD700;
+}
+
+.btn-secondary {
+  background-color: #FFA500; /* Color naranja */
+  border-color: #FFA500;
+}
+
+.btn-secondary:hover {
+  background-color: #FFD700; /* Color amarillo suave al pasar el mouse */
+  border-color: #FFD700;
+}
+
+/* Estilos para el formulario de búsqueda y filtros */
+.form-inline {
+  background-color: #F2F2F2; /* Color beige claro */
+  padding: 10px;
+}
+
+/* Estilos para la ventana emergente o modal */
 .modal-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .show-modal {
-    display: flex;
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-  }
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .close {
-    cursor: pointer;
-  }
-  
-  .modal-body {
-    margin-bottom: 20px;
-  }
-  
-  .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  /* Estilos adicionales para las tarjetas de producto */
-  .card {
-    cursor: pointer;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
 
-  .custom-img { /* Establecemos el ancho al 100% para que se ajuste al tamaño de la tarjeta */
-    height: 320px; /* Establecemos una altura fija para todas las imágenes, puedes ajustar este valor según tus necesidades */
-    object-fit: cover; /* Ajustamos la imagen para que cubra toda el área asignada sin distorsión */
-  }
+.show-modal {
+  display: flex;
+}
 
-  .custom-modal {
-    max-width: 800px; /* Ajusta el tamaño deseado según tus necesidades */
-    width: 90%; /* También puedes usar porcentajes para controlar el ancho */
-  }
+.modal-content {
+  background-color: #FFFFFF; /* Color blanco */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Estilos adicionales para las tarjetas de producto */
+.card {
+  cursor: pointer;
+}
+
+.custom-img {
+  height: 320px;
+  object-fit: cover;
+}
+
+.custom-modal {
+  max-width: 800px;
+  width: 90%;
+}
+
+/* Estilos para los detalles del producto en la ventana emergente */
+.custom-modal p {
+  margin: 5px 0;
+}
+

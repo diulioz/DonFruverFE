@@ -9,44 +9,43 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item me-4">
-          <a class="nav-link" aria-current="page" href="/donfruver" routerLinkActive="active">Inicio</a>
+          <a class="nav-link" aria-current="page" href="/donfruver" routerLinkActive="active">
+            <i class="fas fa-home"></i> Inicio
+          </a>
         </li>
-        <div class="col-md-5">
-          <div class="d-flex align-items-center search-form">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2 custom-search-input" type="search" placeholder="Search" aria-label="Search" #searchInput>
-              <button class="btn btn-outline-success" type="button" (click)="buscarProducto(searchInput.value)">Search</button>
-            </form>
-          </div>
-        </div>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item" *ngIf="authService.esCliente()">
-          <a class="nav-link" href="/carro" routerLinkActive="active">Carro</a>
+        <li class="nav-item" *ngIf="authService.esCliente()&& authService.siLogueado()">
+          <a class="nav-link" href="/carro" routerLinkActive="active">
+            <i class="fas fa-shopping-cart"></i> Carro
+          </a>
         </li>
-        <!-- Agregamos una comprobación para mostrar "Pedidos" y "Productos" solo si el usuario es administrador -->
-        <!-- <li class="nav-item" *ngIf="authService.esAdministrador()"> -->
-        <li class="nav-item" *ngIf="authService.esAdministrador()">
-          <a class="nav-link" href="/pedidos" routerLinkActive="active">Pedidos</a>
+        <li class="nav-item" *ngIf="authService.esAdministrador()&& authService.siLogueado()">
+          <a class="nav-link" href="/pedidos" routerLinkActive="active">
+            <i class="fas fa-clipboard-list"></i> Pedidos
+          </a>
         </li>
-        <!-- <li class="nav-item dropdown" *ngIf="authService.esAdministrador()"> -->
-        <li class="nav-item dropdown" *ngIf="authService.esAdministrador()">
+        <li class="nav-item dropdown" *ngIf="authService.esAdministrador()&& authService.siLogueado()">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Productos
+            <i class="fas fa-box-open"></i> Productos
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="productos">Listar Productos</a></li>
-            <li><a class="dropdown-item" href="productos/agregar">Agregar Producto</a></li>
+            <li><a class="dropdown-item" href="productos"><i class="fas fa-list"></i> Listar Productos</a></li>
+            <li><a class="dropdown-item" href="productos/agregar"><i class="fas fa-plus-circle"></i> Agregar Producto</a></li>
           </ul>
         </li>
         <ng-container *ngIf="!authService.siLogueado(); else loggedIn" >
           <li class="nav-item">
-            <a class="nav-link" href="/login" routerLinkActive="active">Ingresar</a>
+            <a class="nav-link" href="/login" routerLinkActive="active">
+              <i class="fas fa-sign-in-alt"></i> Ingresar
+            </a>
           </li>
         </ng-container>
         <ng-template #loggedIn>
           <li class="nav-item">
-            <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Cerrar Sesión</a>
+            <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">
+              <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
           </li>
         </ng-template>
       </ul>
@@ -58,4 +57,3 @@
 <div class="container custom-container">
   <router-outlet></router-outlet>
 </div>
-

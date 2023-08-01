@@ -1,0 +1,52 @@
+/* Estilos para el formulario de producto */
+.container {
+  background-color: #f8f8f8; /* Color de fondo similar al de la vista anterior */
+  padding: 20px;
+}
+
+.form-label {
+  color: #ffa500; /* Color naranja similar al de la vista anterior */
+}
+
+.form-control {
+  background-color: #ffffff; /* Color blanco para los campos de entrada */
+  border-color: #ffa500; /* Color del borde similar al de la vista anterior */
+}
+
+.form-select {
+  background-color: #ffffff; /* Color blanco para el campo de selección */
+  border-color: #ffa500; /* Color del borde similar al de la vista anterior */
+}
+
+.btn-success {
+  background-color: #5cb85c; /* Color verde para el botón de regresar */
+  border-color: #5cb85c;
+  color: #ffffff; /* Color de texto blanco */
+}
+
+.btn-primary {
+  background-color: #FFD700; /* Color amarillo suave al pasar el mouse */
+  border-color: #FFD700;
+}
+
+.btn-primary:hover {
+  background-color: #FFA500; /* Color naranja */
+  border-color: #FFA500;
+}
+
+.btn-secondary {
+  background-color: #FFA500; /* Color naranja */
+  border-color: #FFA500;
+}
+
+.btn-primary:disabled {
+  background-color: #e6e6e6; /* Color gris para el botón de enviar deshabilitado */
+  border-color: #e6e6e6;
+}
+.btn-success:hover {
+  background-color: #449d44; /* Nuevo color verde cuando se pasa el cursor por encima */
+}
+
+.btn-danger:hover {
+  background-color: #c9302c; /* Nuevo color rojo cuando se pasa el cursor por encima */
+}

@@ -1,9 +1,49 @@
-.input-cantidad {
-    width: 100px;
-  }
+/* Estilos para la vista de carro de compras */
+.container {
+  background-color: #f8f8f8; /* Color de fondo similar al de las vistas anteriores */
+  padding: 20px;
+}
 
-.contenedor-reducido {
-max-width: 1000px; /* Establecer un ancho máximo para el contenedor */
-margin: 0 auto; /* Centrar el contenedor horizontalmente */
-padding: 10px; /* Ajustar el espaciado dentro del contenedor */
+h2 {
+  color: #ffa500; /* Color naranja similar al de las vistas anteriores */
+  margin-bottom: 20px;
+}
+
+.table {
+  background-color: #ffffff; /* Color blanco para la tabla */
+  border-color: #ffa500; /* Color del borde similar al de las vistas anteriores */
+}
+
+.table th {
+  background-color: #ffa500; /* Color naranja para el encabezado de la tabla */
+  color: #ffffff; /* Color de texto blanco */
+}
+
+.table td {
+  border-color: #ffa500; /* Color del borde similar al de las vistas anteriores */
+}
+
+.input-cantidad {
+  width: 100px; /* Ancho del campo de entrada de cantidad */
+}
+
+.btn-success {
+  background-color: #5cb85c; /* Color verde similar al de las vistas anteriores */
+  border-color: #5cb85c;
+  color: #ffffff; /* Color de texto blanco */
+}
+
+.btn-secondary {
+  background-color: #d9534f; /* Color rojo similar al de las vistas anteriores */
+  border-color: #d9534f;
+  color: #ffffff; /* Color de texto blanco */
+}
+
+/* Efecto cuando se pasa el cursor por encima de los botones */
+.btn-success:hover {
+  background-color: #449d44; /* Nuevo color verde cuando se pasa el cursor por encima */
+}
+
+.btn-secondary:hover {
+  background-color: #c9302c;  /* Nuevo color gris cuando se pasa el cursor por encima */
 }

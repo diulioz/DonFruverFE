@@ -1,0 +1,59 @@
+/* Estilos para la vista de lista de productos */
+.container {
+    background-color: #f8f8f8; /* Color de fondo similar al de las vistas anteriores */
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #ffa500; /* Color naranja similar al de las vistas anteriores */
+    margin-bottom: 20px;
+  }
+  
+  .btn-success {
+    background-color: #5cb85c; /* Color verde similar al de las vistas anteriores */
+    border-color: #5cb85c;
+    color: #ffffff; /* Color de texto blanco */
+  }
+  
+  .btn-info {
+    background-color: #5cb85c; /* Color verde para el botón "Confirmar" */
+    border-color: #5cb85c;
+    color: #ffffff; /* Color de texto blanco */
+  }
+  
+  .btn-danger {
+    background-color: #d9534f; /* Color rojo similar al de las vistas anteriores */
+    border-color: #d9534f;
+    color: #ffffff; /* Color de texto blanco */
+  }
+  
+  .table {
+    background-color: #ffffff; /* Color blanco para la tabla */
+    border-color: #ffa500; /* Color del borde similar al de las vistas anteriores */
+  }
+  
+  .table th {
+    background-color: #ffa500; /* Color naranja para el encabezado de la tabla */
+    color: #ffffff; /* Color de texto blanco */
+  }
+  
+  .table td {
+    border-color: #ffa500; /* Color del borde similar al de las vistas anteriores */
+  }
+  
+  .img-thumbnail {
+    border-color: #d4d4d4; /* Color del borde para la imagen */
+  }
+  
+  /* Efecto cuando se pasa el cursor por encima de los botones */
+  .btn-success:hover {
+    background-color: #449d44; /* Nuevo color verde cuando se pasa el cursor por encima */
+  }
+  
+  .btn-info:hover {
+    background-color: #449d44; /* Nuevo color azul claro cuando se pasa el cursor por encima */
+  }
+  
+  .btn-danger:hover {
+    background-color: #c9302c; /* Nuevo color rojo cuando se pasa el cursor por encima */
+  }
