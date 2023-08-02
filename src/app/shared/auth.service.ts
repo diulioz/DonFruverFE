@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { UsuarioModel } from './usuario.model';
-import { PedidoModel } from './pedido.model';
 import { UsuarioService } from './usuario.service';
 @Injectable({
   providedIn: 'root'
@@ -16,22 +14,9 @@ export class AuthService {
     this.obtenerUsuarios()
   }
 
-  //si
   logearse(idUsuario: string, Contrasena: string){
     return this.http.post<any>(`${this.BASE_URL}/singup`, {idUsuario: idUsuario, Contrasena:Contrasena});
   }
-
-  // obtenerRolUsuario(idUsuario: String): Observable<any> {
-  //   return this.http.get<any>(`${this.BASE_URL}/usuarioRol/${idUsuario}`);
-  // }
-
-  // obtenerUsuarioId(idUsuario: string): Observable<UsuarioModel[]> {
-  //   return this.http.get<UsuarioModel[]>(`${this.BASE_URL}/usuarios/${idUsuario}`);
-  // }
-
-  // obtenerDetallesPedidoPorId(idPedido: number): Observable<PedidoModel[]> {
-  //   return this.http.get<PedidoModel[]>(`${this.BASE_URL}/pedidos/${idPedido}`);
-  // }
  
   //Retorno del Token cuando se logra el logeo
   siLogueado(){
@@ -91,16 +76,5 @@ export class AuthService {
       return false;
     }
   }
-
-  // esUsuario(idUsuario: string|null){
-  //   const usuario1 = Number(localStorage.getItem('id'));
-  //   const usuario2 = Number(idUsuario)
-  //   if(usuario1==usuario2){
-  //     return true;
-  //   }
-  //   else{
-  //     return false;
-  //   }
-  // }
 
 }

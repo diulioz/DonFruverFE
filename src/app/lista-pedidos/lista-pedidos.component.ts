@@ -25,13 +25,6 @@ export class ListaPedidosComponent {
     this.pedidos = this.pedidosService.obtenerPedidos();
   }
 
-  // borrarPedido(idPedido: string) { 
-  //   this.pedidosService.borrarPedido(idPedido).subscribe(data => { 
-  //     console.log("Registro Eliminado");
-  //     this.ngOnInit();
-  //   });
-  // }
-
   //Permite confirmar el pedido, cambia el estado a 1 y envia un correo de confirmacion al cliente
   confirmarPedido(pedido: PedidoModel): void {
     pedido.Confirmado = 1; // Establecer el estado a "Aceptado" (valor 1)

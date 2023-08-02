@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { DonFruverComponent } from './don-fruver/don-fruver.component';
 import { CarroComponent } from './carro/carro.component';
 import { AuthGuard } from './auth.guard';
-import { CarritoService } from './shared/carrito.service';
+import { CorreoService } from './shared/correo.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { CarritoService } from './shared/carrito.service';
     PedidoService,
     UsuarioService,
     ProductoService,
-    CarritoService,
+    CorreoService,
     AuthGuard
   ],
   bootstrap: [AppComponent]
