@@ -30,13 +30,14 @@ export class DonFruverComponent {
     private detallePedidoService: DetallePedidoService
   ) {}
 
+  // Se obtiene los productos almacenados en la BD
   ngOnInit() {
     this.obtenerProductos();
   }
 
+  // Se obtiene los productos y permite aplicar el filtro
   obtenerProductos() {
     this.productos = this.productoService.obtenerProductos();
-    // Verificar que this.productos no sea undefined antes de suscribirse
     this.productos?.subscribe((productos) => {
       this.productosFiltrados = productos; // Actualizar lista de productos filtrados al obtener los productos
       this.filtrarProductos(); // Aplicar el filtrado inicial
@@ -44,7 +45,7 @@ export class DonFruverComponent {
   }
 
   filtrarProductos() {
-    // Filtrar productos en base a los criterios ingresados por el usuario
+    // Filtrar productos en base a los criterios ingresados por el usuario puede ser por nombre, categoria o precio
     if (this.filtro.nombre || this.filtro.categoria || this.filtro.precio) {
       this.productosFiltrados = this.productosFiltrados.filter((producto) => {
         const nombre = this.filtro.nombre
@@ -103,7 +104,7 @@ export class DonFruverComponent {
           };
           // Se actualiza el total del pedido
           this.confirmarPedido(pedidoCreado, detallePedido.Subtotal);
-          // Se actualiza la cantaidad del producto en la base de datos
+          // Se actualiza la cantidad del producto en la base de datos
           this.actualizarProducto(producto, cantidadAntes, detallePedido.Cantidad);
           this.detallePedidoService.agregarDetalle(detallePedido).subscribe((detalleCreado) => {
             console.log('Compra realizada con éxito');

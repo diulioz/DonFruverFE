@@ -14,6 +14,7 @@ export class AuthService {
     this.obtenerUsuarios()
   }
 
+  //Comunicación con la base de datos para logearse
   logearse(idUsuario: string, Contrasena: string){
     return this.http.post<any>(`${this.BASE_URL}/singup`, {idUsuario: idUsuario, Contrasena:Contrasena});
   }

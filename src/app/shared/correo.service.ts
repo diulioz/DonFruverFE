@@ -9,6 +9,7 @@ export class CorreoService {
 
   constructor(private http: HttpClient) {}
 
+  //Conexion con la base de datos, envio de correo eléctronico
   enviarCorreo(email: string, subject: string, text: string) {
     console.log('Datos de correo electrónico:', { email, subject, text });
     console.log(`${this.BASE_URL}/correo/${email}`);

@@ -24,7 +24,7 @@ export class ListaPedidosComponent {
   ngOnInit(){
     this.pedidos = this.pedidosService.obtenerPedidos();
   }
-
+  
   //Permite confirmar el pedido, cambia el estado a 1 y envia un correo de confirmacion al cliente
   confirmarPedido(pedido: PedidoModel): void {
     pedido.Confirmado = 1; // Establecer el estado a "Aceptado" (valor 1)
@@ -32,7 +32,7 @@ export class ListaPedidosComponent {
     this.pedidosService.confirmarPedido(pedido).subscribe(data => {
       console.log("Pedido confirmado");
       this.ngOnInit();
-      this.correoService.enviarCorreo(this.correoElectronico || '', 'Pedido Confirmado', 'Tu pedido ha sido confirmado con éxito. Gracias por tu compra.').subscribe(
+      this.correoService.enviarCorreo(this.correoElectronico || '', 'Pedido Confirmado', `Tu pedido # ${pedido.idPedido} ha sido confirmado con éxito. Gracias por tu compra.`).subscribe(
         (response) => {
           console.log('Correo enviado con éxito', response);
         },
@@ -50,7 +50,7 @@ export class ListaPedidosComponent {
     this.pedidosService.confirmarPedido(pedido).subscribe(data => {
       console.log("Pedido rechazado");
       this.ngOnInit();
-      this.correoService.enviarCorreo(this.correoElectronico || '', 'Pedido Rechazado', 'Lamentamos informarte que tu pedido ha sido rechazado. Por favor, contáctanos para más información.').subscribe(
+      this.correoService.enviarCorreo(this.correoElectronico || '', 'Pedido Rechazado', `Lamentamos informarte que tu pedido # ${pedido.idPedido} ha sido rechazado. Por favor, contáctanos para más información.`).subscribe(
         (response) => {
           console.log('Correo enviado con éxito', response);
         },

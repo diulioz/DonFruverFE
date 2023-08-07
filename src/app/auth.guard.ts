@@ -8,7 +8,7 @@ import { AuthService } from './shared/auth.service';
 export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
-
+  // para restringir la entrada a las vidatas si no se esta logueado y con los permisos necesarios
   canActivate():boolean{
     if(this.authService.siLogueado()){
       return true;

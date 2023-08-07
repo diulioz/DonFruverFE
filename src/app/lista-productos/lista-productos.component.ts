@@ -13,6 +13,7 @@ export class ListaProductosComponent implements OnInit {
 
   constructor(private productoService: ProductoService) { }
 
+  // Se obtiene la lista de productos
   ngOnInit(){
     this.productos = this.productoService.obtenerProductos();
   }

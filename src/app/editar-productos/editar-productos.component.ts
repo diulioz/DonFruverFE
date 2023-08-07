@@ -37,7 +37,7 @@ export class EditarProductosComponent implements OnInit{
   onSubmit() { 
     console.log("Submit realizado");
     if (this.producto.idProducto) {
-      //Si es de edición, el se actualizaran los datos del producto en la base de datos
+      //Si es de edición, el se actualizaran los datos del producto existente en la base de datos
       this.productoService.actualizarProducto(this.producto).subscribe(
         data => {
           console.log(data);

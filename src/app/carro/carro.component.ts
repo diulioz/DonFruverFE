@@ -46,7 +46,7 @@ export class CarroComponent implements OnInit {
       this.productos = productos;
     });
   }
-  //se obtiene el nombre del producto usande el idProducto
+  //se obtiene el nombre del producto usando el idProducto
   obtenerNombreProducto(idProducto: string): string {
     const productoEncontrado = this.productos.find(producto => producto.idProducto === idProducto);
     return productoEncontrado ? productoEncontrado.Nombre : 'Producto no encontrado';
@@ -57,7 +57,7 @@ export class CarroComponent implements OnInit {
     return productoEncontrado ? productoEncontrado.Precio : 0; // Retorna 0 si no se encuentra el producto
   }
 
-  //Permite que en el carrito solo se muestren los pedidos del usuario en sesión, comparando el usuario del pdido
+  //Permite que en el carrito solo se muestren los pedidos del usuario en sesión, comparando el usuario del pedido
   //con el usuario guardado en locaStorage
   esUsuario(idUsuario: string|null){
     const usuario1 = Number(localStorage.getItem('id'));
